@@ -21,7 +21,6 @@ function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken }) {
     }
 
     const handleDelete = async () => {
-        console.log(url)
         setLoading(true);
         if(userType === "admin"){
             try {

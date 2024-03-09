@@ -16,7 +16,6 @@ let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 const Login = () => {
-    console.log(process.env.NODE_MODE === "dev")
 
     const [loginState, setLoginState] = useState(fieldsState);
     const navigate = useNavigate();
