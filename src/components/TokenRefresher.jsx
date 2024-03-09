@@ -23,7 +23,7 @@ const TokenRefresher = () => {
     const refreshAccessToken = async () => {
         
         try {
-            const response = await axios.get("https://pwits2024-backend.onrender.com/auth/refresh", {
+            const response = await axios.get(process.env.NODE_MODE === "dev" ? `http://localhost:8080/auth/refresh`:"https://pwits2024-backend.onrender.com/auth/refresh", {
                 withCredentials: true, // Send cookies with the request
             });
             const newAccessToken = response.data.accessToken;

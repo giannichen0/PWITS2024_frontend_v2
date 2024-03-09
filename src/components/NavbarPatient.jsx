@@ -12,7 +12,7 @@ const NavbarMio = () => {
 
     const handleLogout = async () => {
         try {
-            const response = await axios.post("https://pwits2024-backend.onrender.com/auth/logout", {}, {
+            const response = await axios.post(process.env.NODE_MODE === "dev" ? `http://localhost:8080/auth/logout`:"https://pwits2024-backend.onrender.com/auth/logout", {}, {
                 withCredentials: true // Send cookies with the request
             });
     

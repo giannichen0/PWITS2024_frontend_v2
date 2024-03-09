@@ -17,7 +17,7 @@ const AdminPatient = ({ accessToken, role }) => {
     const getPatients = async () => {
         try {
             const response = await axios.get(
-                "https://pwits2024-backend.onrender.com/admin/patients",
+                process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/patients`:"https://pwits2024-backend.onrender.com/admin/patients",
                 {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,

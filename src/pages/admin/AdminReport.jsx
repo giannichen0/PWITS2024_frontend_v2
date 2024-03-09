@@ -17,7 +17,7 @@ const AdminReport = ({ accessToken, role }) => {
     const getReports = async () => {
         try {
             const response = await axios.get(
-                "https://pwits2024-backend.onrender.com/admin/reports",
+                process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/reports`:"https://pwits2024-backend.onrender.com/admin/reports",
                 {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,

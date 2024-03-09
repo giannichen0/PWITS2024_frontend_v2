@@ -21,7 +21,7 @@ const DoctorProfile = ({ accessToken, role }) => {
             const getDottore = async () => {
                 try {
                     const response = await axios.get(
-                        "https://pwits2024-backend.onrender.com/doctor/profile",
+                        process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/profile`:"https://pwits2024-backend.onrender.com/doctor/profile",
                         {
                             headers: {
                                 Authorization: `Bearer ${accessToken}`,

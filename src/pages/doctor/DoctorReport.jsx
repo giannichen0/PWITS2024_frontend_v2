@@ -32,7 +32,7 @@ const DoctorReport = ({accessToken, role}) => {
           const getReports = async () => {
               try {
                   const response = await axios.get(
-                      "https://pwits2024-backend.onrender.com/doctor/reports",
+                    process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/reports`: "https://pwits2024-backend.onrender.com/doctor/reports",
                       {
                           headers: {
                               Authorization: `Bearer ${accessToken}`,

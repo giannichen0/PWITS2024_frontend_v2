@@ -9,11 +9,15 @@ import { useNavigate } from "react-router-dom";
 import Title from "../components/Title";
 import Footer from "../components/Footer";
 
+
+
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
 const Login = () => {
+    console.log(process.env.NODE_MODE === "dev")
+
     const [loginState, setLoginState] = useState(fieldsState);
     const navigate = useNavigate();
 
@@ -34,7 +38,7 @@ const Login = () => {
     const authenticateUser = async () => {
         setLoading(true);
         try {
-            const response = await axios.post("https://pwits2024-backend.onrender.com/auth", {
+            const response = await axios.post(process.env.NODE_MODE === "dev" ? "http://localhost:8080/auth": "https://pwits2024-backend.onrender.com/auth", {
                 email: loginState.email,
                 password: loginState.password,
             });

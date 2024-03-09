@@ -62,7 +62,7 @@ function FormCRUD({
             if (url === "doctors") {
                 try {
                     const response = await axios.post(
-                        "https://pwits2024-backend.onrender.com/admin/doctors",
+                        process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/doctors`:"https://pwits2024-backend.onrender.com/admin/doctors",
                         {
                             name: updateState.name,
                             surname: updateState.surname,
@@ -89,7 +89,7 @@ function FormCRUD({
 
                     try {
                         const response = await axios.post(
-                            "https://pwits2024-backend.onrender.com/admin/patients",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/patients`:"https://pwits2024-backend.onrender.com/admin/patients",
                             {
                                 name: updateState.name,
                                 surname: updateState.surname,
@@ -119,7 +119,7 @@ function FormCRUD({
                 if( user === "doctor"){
                     try {
                         const response = await axios.post(
-                            "https://pwits2024-backend.onrender.com/doctor/patients",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/patients`:"https://pwits2024-backend.onrender.com/doctor/patients",
                             {
                                 name: updateState.name,
                                 surname: updateState.surname,
@@ -151,7 +151,7 @@ function FormCRUD({
                 if (user === "admin") {
                     try {
                         const response = await axios.post(
-                            "https://pwits2024-backend.onrender.com/admin/reports",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/reports`:"https://pwits2024-backend.onrender.com/admin/reports",
                             {
                                 content: updateState?.content,
                                 field: updateState?.field,
@@ -183,7 +183,7 @@ function FormCRUD({
                 if(user === "doctor"){
                     try {
                         const response = await axios.post(
-                            "https://pwits2024-backend.onrender.com/doctor/reports",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/reports`:"https://pwits2024-backend.onrender.com/doctor/reports",
                             {
                                 content: updateState?.content,
                                 field: updateState?.field,
@@ -218,7 +218,7 @@ function FormCRUD({
 
                     try {
                         const response = await axios.post(
-                            "https://pwits2024-backend.onrender.com/admin/exams",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/exams`:"https://pwits2024-backend.onrender.com/admin/exams",
                             {
                                 content: updateState?.content,
                                 field: fieldExam,
@@ -258,7 +258,7 @@ function FormCRUD({
                 if(user === "doctor"){
                     try {
                         const response = await axios.post(
-                            "https://pwits2024-backend.onrender.com/doctor/exams",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/exams`:"https://pwits2024-backend.onrender.com/doctor/exams",
                             {
                                 content: updateState?.content,
                                 field: fieldExam,
@@ -301,7 +301,7 @@ function FormCRUD({
                 if (user !== "doctor") {
                     try {
                         const response = await axios.put(
-                            "https://pwits2024-backend.onrender.com/admin/doctors",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/doctors`:"https://pwits2024-backend.onrender.com/admin/doctors",
                             {
                                 id: element._id,
                                 name: updateState?.name,
@@ -327,7 +327,7 @@ function FormCRUD({
                 if (user === "doctor") {
                     try {
                         const response = await axios.put(
-                            "https://pwits2024-backend.onrender.com/doctor/profile",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/profile`:"https://pwits2024-backend.onrender.com/doctor/profile",
                             {
                                 name: updateState?.name,
                                 surname: updateState?.surname,
@@ -354,7 +354,7 @@ function FormCRUD({
                 if (user !== "doctor") {
                     try {
                         const response = await axios.put(
-                            "https://pwits2024-backend.onrender.com/admin/patients",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/patients`:"https://pwits2024-backend.onrender.com/admin/patients",
                             {
                                 id: element._id,
                                 name: updateState?.name,
@@ -385,7 +385,7 @@ function FormCRUD({
                 if (user === "doctor") {
                     try {
                         const response = await axios.put(
-                            "https://pwits2024-backend.onrender.com/doctor/patients",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/patients`:"https://pwits2024-backend.onrender.com/doctor/patients",
                             {
                                 id: element._id,
                                 name: updateState?.name,
@@ -418,7 +418,7 @@ function FormCRUD({
 
                     try {
                         const response = await axios.put(
-                            "https://pwits2024-backend.onrender.com/admin/exams",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/exams`: "https://pwits2024-backend.onrender.com/admin/exams",
                             {
                                 id: element._id,
                                 content: updateState?.content,
@@ -457,7 +457,7 @@ function FormCRUD({
                 if(user === "doctor"){
                     try {
                         const response = await axios.put(
-                            "https://pwits2024-backend.onrender.com/doctor/exams",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/exams`:"https://pwits2024-backend.onrender.com/doctor/exams",
                             {
                                 id: element._id,
                                 content: updateState?.content,
@@ -499,7 +499,7 @@ function FormCRUD({
 
                     try {
                         const response = await axios.put(
-                            "https://pwits2024-backend.onrender.com/admin/reports",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/reports`:"https://pwits2024-backend.onrender.com/admin/reports",
                             {
                                 id: element._id,
                                 content: updateState?.content,
@@ -532,7 +532,7 @@ function FormCRUD({
                 if (user === "doctor"){
                     try {
                         const response = await axios.put(
-                            "https://pwits2024-backend.onrender.com/doctor/reports",
+                            process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/patients`:"https://pwits2024-backend.onrender.com/doctor/reports",
                             {
                                 id: element._id,
                                 content: updateState?.content,
@@ -569,7 +569,7 @@ function FormCRUD({
         setLoading(true);
         try {
             const response = await axios.get(
-                "https://pwits2024-backend.onrender.com/admin/doctors",
+                process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/doctors`: "https://pwits2024-backend.onrender.com/admin/doctors",
                 {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
@@ -591,7 +591,7 @@ function FormCRUD({
         if(user === "admin"){
             try {
                 const response = await axios.get(
-                    "https://pwits2024-backend.onrender.com/admin/patients",
+                    process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/patients`:"https://pwits2024-backend.onrender.com/admin/patients",
                     {
                         headers: {
                             Authorization: `Bearer ${accessToken}`,
@@ -609,7 +609,7 @@ function FormCRUD({
         if(user === "doctor"){
             try {
                 const response = await axios.get(
-                    "https://pwits2024-backend.onrender.com/doctor/patients",
+                    process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/patients`: "https://pwits2024-backend.onrender.com/doctor/patients",
                     {
                         headers: {
                             Authorization: `Bearer ${accessToken}`,
@@ -634,7 +634,7 @@ function FormCRUD({
             setLoading(true);
             try {
                 const response = await axios.get(
-                    "https://pwits2024-backend.onrender.com/admin/reports",
+                    process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/reports`: "https://pwits2024-backend.onrender.com/admin/reports",
                     {
                         headers: {
                             Authorization: `Bearer ${accessToken}`,
@@ -654,7 +654,7 @@ function FormCRUD({
             setLoading(true);
             try {
                 const response = await axios.get(
-                    "https://pwits2024-backend.onrender.com/doctor/reports",
+                    process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/reports`:"https://pwits2024-backend.onrender.com/doctor/reports",
                     {
                         headers: {
                             Authorization: `Bearer ${accessToken}`,

@@ -4,6 +4,8 @@ import { useLocation } from "react-router-dom";
 import FormCRUD from "./formComponents/FormCRUD";
 
 function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken }) {
+
+
     const [loading, setLoading] = useState(false);
 
     const location = useLocation();
@@ -23,7 +25,7 @@ function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken }) {
         setLoading(true);
         if(userType === "admin"){
             try {
-                await axios.delete(`https://pwits2024-backend.onrender.com/admin/${url}`, {
+                await axios.delete(process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/${url}`: `https://pwits2024-backend.onrender.com/admin/${url}`, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
                     },
@@ -41,7 +43,7 @@ function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken }) {
         }
         if(userType === "doctor"){
             try {
-                await axios.delete(`https://pwits2024-backend.onrender.com/doctor/${url}`, {
+                await axios.delete(process.env.NODE_MODE === "dev" ? `http://localhost:8080/doctor/${url}`:`https://pwits2024-backend.onrender.com/doctor/${url}`, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
                     },

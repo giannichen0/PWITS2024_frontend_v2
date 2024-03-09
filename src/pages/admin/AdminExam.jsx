@@ -17,7 +17,7 @@ function AdminExam({ accessToken, role }) {
     const getExams = async () => {
         try {
             const response = await axios.get(
-                "https://pwits2024-backend.onrender.com/admin/exams",
+                process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/exams`:"https://pwits2024-backend.onrender.com/admin/exams",
                 {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
