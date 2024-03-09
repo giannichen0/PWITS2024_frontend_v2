@@ -21,8 +21,13 @@ function Table({ data, accessToken }) {
     },[isModalOpen])
 
     const formatDate = (dateString) => {
+        
         if (typeof dateString === "boolean") {
             return dateString ? "Completato" : "Non completato";
+        }
+
+        if(!isNaN(+dateString)){
+            return dateString
         }
 
         const date = new Date(dateString);
@@ -114,6 +119,8 @@ function Table({ data, accessToken }) {
 
     return (
         <>
+        <div className="overflow-auto w-full" style={{ height: '50vh' }}>
+
             {columnHeaders.length > 0 ? (
                 <table className="w-full border-separate border-spacing-2">
                     <thead>
@@ -215,6 +222,9 @@ function Table({ data, accessToken }) {
             ) : (
                 <h1>No data</h1>
             )}
+        </div>
+
+        
             <Modal
                 isOpen={isModalOpen}
                 closeModal={closeModal}
@@ -222,6 +232,7 @@ function Table({ data, accessToken }) {
                 mode={mode}
                 accessToken={accessToken}
             />
+            
         </>
     );
 }

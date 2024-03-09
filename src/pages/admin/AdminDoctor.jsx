@@ -66,8 +66,10 @@ const AdminDoctor = ({ accessToken, role }) => {
                         >
                             <CiSquarePlus />
                         </button>
-
-                        <Table data={dottori} accessToken={accessToken} />
+                        
+                            <Table data={dottori} accessToken={accessToken} />
+                        
+                        
                     </>
                 )}
             </div>
