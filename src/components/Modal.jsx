@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import FormCRUD from "./formComponents/FormCRUD";
 
-function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken }) {
+function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken, handleEditSuccess,handleDeleteSuccess}) {
 
 
     const [loading, setLoading] = useState(false);
@@ -20,6 +20,12 @@ function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken }) {
         url = pathSegments[2];
     }
 
+    
+
+
+
+    
+
     const handleDelete = async () => {
         setLoading(true);
         if(userType === "admin"){
@@ -33,11 +39,18 @@ function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken }) {
                     },
                 });
                 closeModal();
+                handleDeleteSuccess()
+                
+                
             } catch (error) {
                 console.error("Error fetching doctors:", error);
             } finally {
                 setLoading(false);
                 closeModal();
+                handleDeleteSuccess()
+
+               
+
             }
         }
         if(userType === "doctor"){
@@ -51,11 +64,16 @@ function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken }) {
                     },
                 });
                 closeModal();
+                handleDeleteSuccess()
+
+                
             } catch (error) {
                 console.error("Error fetching doctors:", error);
             } finally {
                 setLoading(false);
                 closeModal();
+                handleDeleteSuccess()
+
             }
         }
     };
@@ -96,6 +114,8 @@ function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken }) {
                             closeModal={closeModal}
                             element={selectedItem}
                             user={userType}
+                            handleEditSuccess={handleEditSuccess}
+                            
                         />
                     </div>
                 </div>

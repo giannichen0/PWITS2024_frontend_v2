@@ -14,7 +14,7 @@ const AdminPatient = ({ accessToken, role }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [mode, setMode] = useState("");
 
-    const getPatients = async () => {
+    const fetchData = async () => {
         try {
             const response = await axios.get(
                 process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/patients`:"https://pwits2024-backend.onrender.com/admin/patients",
@@ -38,7 +38,7 @@ const AdminPatient = ({ accessToken, role }) => {
         } else {
             setLoading(true);
            
-            getPatients();
+            fetchData();
         }
     }, []);
 
@@ -49,7 +49,7 @@ const AdminPatient = ({ accessToken, role }) => {
     const closeModal = async () => {
         setIsModalOpen(false);
         setMode("");
-        await getPatients()
+        await fetchData()
 
     };
 
@@ -66,7 +66,7 @@ const AdminPatient = ({ accessToken, role }) => {
                         >
                             <CiSquarePlus />
                         </button>
-                        <Table data={patient} accessToken={accessToken} />
+                        <Table data={patient} accessToken={accessToken} fetchData={fetchData}/>
                     </>
                 )}
             </div>

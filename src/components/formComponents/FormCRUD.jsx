@@ -13,6 +13,7 @@ function FormCRUD({
     element,
     mode = "edit",
     user,
+    handleEditSuccess
 }) {
     
     const [dottori, setDottori] = useState([]);
@@ -318,10 +319,12 @@ function FormCRUD({
                         );
                         closeModal();
                         setUpdateState({});
+                        handleEditSuccess()
                     } catch (err) {
                         console.error("Error fetching doctors:", err);
                         closeModal();
                         setUpdateState({});
+                        handleEditSuccess()
                     }
                 }
                 if (user === "doctor") {
@@ -343,10 +346,14 @@ function FormCRUD({
                         );
                         closeModal();
                         setUpdateState({});
+                        handleEditSuccess()
+
                     } catch (err) {
                         console.error("Error fetching doctors:", err);
                         closeModal();
                         setUpdateState({});
+                        handleEditSuccess()
+
                     }
                 }
             }
@@ -374,12 +381,16 @@ function FormCRUD({
                         setUpdateState({});
                         setDottori([]);
                         closeModal();
+                        handleEditSuccess()
+
                     } catch (err) {
                         console.error("Error fetching patients:", err);
                         setSelectedDoctor("");
                         setUpdateState({});
                         setDottori([]);
                         closeModal();
+                        handleEditSuccess()
+
                     }
                 }
                 if (user === "doctor") {
@@ -404,12 +415,16 @@ function FormCRUD({
                         setUpdateState({});
                         setDottori([]);
                         closeModal();
+                        handleEditSuccess()
+
                     } catch (err) {
                         console.error("Error fetching patients:", err);
                         setSelectedDoctor("");
                         setUpdateState({});
                         setDottori([]);
                         closeModal();
+                        handleEditSuccess()
+
                     }
                 }
             }
@@ -442,6 +457,8 @@ function FormCRUD({
                         setPazienti([]);
                         setReports([]);
                         closeModal();
+                        handleEditSuccess()
+
                     } catch (err) {
                         console.error("Error fetching reports:", err);
                         setSelectedDoctor("");
@@ -452,6 +469,8 @@ function FormCRUD({
                         setPazienti([]);
                         setReports([]);
                         closeModal();
+                        handleEditSuccess()
+
                     }
                 }
                 if(user === "doctor"){
@@ -481,6 +500,8 @@ function FormCRUD({
                         setPazienti([]);
                         setReports([]);
                         closeModal();
+                        handleEditSuccess()
+
                     } catch (err) {
                         console.error("Error fetching reports:", err);
                         setSelectedDoctor("");
@@ -491,6 +512,8 @@ function FormCRUD({
                         setPazienti([]);
                         setReports([]);
                         closeModal();
+                        handleEditSuccess()
+
                     }
                 }
             }
@@ -519,6 +542,8 @@ function FormCRUD({
                         setDottori([]);
                         setPazienti([]);
                         closeModal();
+                        handleEditSuccess()
+
                     } catch (err) {
                         console.error("Error fetching reports:", err);
                         setSelectedDoctor("");
@@ -527,6 +552,8 @@ function FormCRUD({
                         setDottori([]);
                         setPazienti([]);
                         closeModal();
+                        handleEditSuccess()
+
                     }
                 }
                 if (user === "doctor"){
@@ -551,6 +578,8 @@ function FormCRUD({
                         setDottori([]);
                         setPazienti([]);
                         closeModal();
+                        handleEditSuccess()
+
                     } catch (err) {
                         console.error("Error fetching reports:", err);
                         setSelectedDoctor("");
@@ -559,6 +588,8 @@ function FormCRUD({
                         setDottori([]);
                         setPazienti([]);
                         closeModal();
+                        handleEditSuccess()
+
                     }
                 }
             }

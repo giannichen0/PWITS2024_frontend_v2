@@ -14,7 +14,7 @@ const AdminReport = ({ accessToken, role }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [mode, setMode] = useState("");
 
-    const getReports = async () => {
+    const fetchData = async () => {
         try {
             const response = await axios.get(
                 process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/reports`:"https://pwits2024-backend.onrender.com/admin/reports",
@@ -39,7 +39,7 @@ const AdminReport = ({ accessToken, role }) => {
     const closeModal = async () => {
         setIsModalOpen(false);
         setMode("");
-        await getReports()
+        await fetchData()
     };
 
     
@@ -50,7 +50,7 @@ const AdminReport = ({ accessToken, role }) => {
         } else {
             setLoading(true);
             
-            getReports();
+            fetchData();
         }
     }, []);
 
@@ -67,7 +67,7 @@ const AdminReport = ({ accessToken, role }) => {
                         >
                             <CiSquarePlus />
                         </button>
-                        <Table data={report} accessToken={accessToken} />
+                        <Table data={report} accessToken={accessToken} fetchData={fetchData}/>
                     </>
                 )}
             </div>

@@ -14,10 +14,14 @@ const AdminDoctor = ({ accessToken, role }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [mode, setMode] = useState("");
 
-    const getDottori = async () => {
+   
+
+    const fetchData = async () => {
         try {
             const response = await axios.get(
-                process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/doctors`:"https://pwits2024-backend.onrender.com/admin/doctors",
+                process.env.NODE_MODE === "dev"
+                    ? `http://localhost:8080/admin/doctors`
+                    : "https://pwits2024-backend.onrender.com/admin/doctors",
                 {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
@@ -37,8 +41,8 @@ const AdminDoctor = ({ accessToken, role }) => {
             navigate("/");
         } else {
             setLoading(true);
-            
-            getDottori();
+
+            fetchData()
         }
     }, []);
 
@@ -49,7 +53,7 @@ const AdminDoctor = ({ accessToken, role }) => {
     const closeModal = async () => {
         setIsModalOpen(false);
         setMode("");
-        getDottori()
+        await fetchData();
        
     };
 
@@ -66,10 +70,12 @@ const AdminDoctor = ({ accessToken, role }) => {
                         >
                             <CiSquarePlus />
                         </button>
-                        
-                            <Table data={dottori} accessToken={accessToken} />
-                        
-                        
+
+                        <Table
+                            data={dottori}
+                            accessToken={accessToken}
+                            fetchData={fetchData}
+                        />
                     </>
                 )}
             </div>

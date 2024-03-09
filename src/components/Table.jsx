@@ -6,19 +6,14 @@ import { MdOutlineDelete } from "react-icons/md";
 import { BsFiletypePdf } from "react-icons/bs";
 import Modal from "./Modal";
 
-function Table({ data, accessToken }) {
+function Table({ data, accessToken, fetchData }) {
     const columnHeaders = data.length > 0 ? Object.keys(data[0]) : [];
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState("");
     const [mode, setMode] = useState("");
-
-    const [status, setStatus] = useState("");
-
-    useEffect(()=>{
-        setStatus("Rerender")
-        setStatus("")
-    },[isModalOpen])
+   
+    
 
     const formatDate = (dateString) => {
         
@@ -114,6 +109,16 @@ function Table({ data, accessToken }) {
                 URL.revokeObjectURL(blobUrl);
             })
             .catch((err) => console.log(err));
+    };
+
+    const handleEditSuccess = () => {
+        
+        fetchData();
+    };
+
+    const handleDeleteSuccess = () => {
+        
+        fetchData();
     };
     
 
@@ -231,6 +236,8 @@ function Table({ data, accessToken }) {
                 selectedItem={selectedItem}
                 mode={mode}
                 accessToken={accessToken}
+                handleEditSuccess={handleEditSuccess}
+                handleDeleteSuccess={handleDeleteSuccess}
             />
             
         </>

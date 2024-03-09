@@ -14,7 +14,7 @@ function AdminExam({ accessToken, role }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [mode, setMode] = useState("");
 
-    const getExams = async () => {
+    const fetchData = async () => {
         try {
             const response = await axios.get(
                 process.env.NODE_MODE === "dev" ? `http://localhost:8080/admin/exams`:"https://pwits2024-backend.onrender.com/admin/exams",
@@ -39,7 +39,7 @@ function AdminExam({ accessToken, role }) {
     const closeModal =async  () => {
         setIsModalOpen(false);
         setMode("");
-        await getExams()
+        await fetchData()
     };
     
 
@@ -49,7 +49,7 @@ function AdminExam({ accessToken, role }) {
         } else {
             setLoading(true);
            
-            getExams();
+            fetchData();
         }
     }, []);
 
@@ -66,7 +66,7 @@ function AdminExam({ accessToken, role }) {
                         >
                             <CiSquarePlus />
                         </button>
-                        <Table data={exam} accessToken={accessToken} />
+                        <Table data={exam} accessToken={accessToken} fetchData={fetchData}/>
                     </>
                 )}
             </div>
@@ -75,6 +75,7 @@ function AdminExam({ accessToken, role }) {
                 closeModal={closeModal}
                 mode={mode}
                 accessToken={accessToken}
+                
             />
         </>
     );

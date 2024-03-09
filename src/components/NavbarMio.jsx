@@ -11,8 +11,10 @@ const NavbarMio = () => {
     const location = useLocation();
     const {setAccessToken} = useContext(AuthContext)
     const navigate = useNavigate()
+
     useEffect(() => {
         initFlowbite();
+       
       }, []);
     
 
