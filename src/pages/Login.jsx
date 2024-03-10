@@ -33,7 +33,7 @@ const Login = () => {
         authenticateUser();
     };
 
-    //Handle Login API Integration here
+    //Handle Login API 
     const authenticateUser = async () => {
         setLoading(true);
         try {
