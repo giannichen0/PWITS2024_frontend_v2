@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect,useRef, useState } from "react";
 import axios from "axios";
 import { AiOutlineEdit } from "react-icons/ai";
 import { RiSendPlaneFill } from "react-icons/ri";
@@ -8,12 +8,17 @@ import Modal from "./Modal";
 
 function Table({ data, accessToken, fetchData }) {
     const columnHeaders = data.length > 0 ? Object.keys(data[0]) : [];
+    const tabella = useRef()
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState("");
     const [mode, setMode] = useState("");
    
-    
+    useEffect(()=>{
+        $(document).ready( function () {
+            $(tabella.current).DataTable();
+        } );
+    },[])
 
     const formatDate = (dateString) => {
         
@@ -124,10 +129,10 @@ function Table({ data, accessToken, fetchData }) {
 
     return (
         <>
-        <div className="overflow-auto w-full" style={{ height: '50vh' }}>
+        <div className="overflow-auto w-full" >
 
             {columnHeaders.length > 0 ? (
-                <table className="w-full border-separate border-spacing-2">
+                <table className="" ref={tabella} id="tabella">
                     <thead>
                         <tr>
                             {columnHeaders.map((header, index) => (
