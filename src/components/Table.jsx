@@ -5,6 +5,7 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { MdOutlineDelete } from "react-icons/md";
 import { BsFiletypePdf } from "react-icons/bs";
 import Modal from "./Modal";
+import Footer from "../components/Footer"
 
 function Table({ data, accessToken, fetchData }) {
     const columnHeaders = data.length > 0 ? Object.keys(data[0]) : [];
@@ -129,22 +130,28 @@ function Table({ data, accessToken, fetchData }) {
 
     return (
         <>
-        <div className="overflow-auto w-full" >
+        <div className="overflow-auto w-full" style={{"height":"60vh"}} >
 
             {columnHeaders.length > 0 ? (
                 <table className="" ref={tabella} id="tabella">
                     <thead>
                         <tr>
                             {columnHeaders.map((header, index) => (
+                                header == "_id" ? <th
+                                key={index}
+                                className="border border-slate-600 rounded-md hidden"
+                            >
+                                {header}
+                            </th> : 
                                 <th
-                                    key={index}
-                                    className="border border-slate-600 rounded-md"
+                                    key={index }
+                                    className="border border-slate-600 rounded-md text-center"
                                 >
-                                    {header}
+                                    {header== "createdAt" ? "PRENOTATO IL" : header.toUpperCase()}
                                 </th>
                             ))}
                             <th className="border border-slate-600 rounded-md">
-                                Operations
+                                OPERAZIONI
                             </th>
                         </tr>
                     </thead>
@@ -166,6 +173,20 @@ function Table({ data, accessToken, fetchData }) {
                             return (
                                 <tr key={index} className="h-14">
                                     {columnHeaders.map((header, idx) => (
+                                        header == "_id" ? <td
+                                        key={idx}
+                                        className="border border-slate-700 rounded-md text-center max-w-14 hidden"
+                                    >
+                                        {new Date(
+                                            item[header]
+                                        ).toString() !== "Invalid Date" ? (
+                                            formatDate(item[header])
+                                        ) : (
+                                            <div className="overflow-x-auto whitespace-nowrap">
+                                                {item[header]}
+                                            </div>
+                                        )}
+                                    </td> :
                                         <td
                                             key={idx}
                                             className="border border-slate-700 rounded-md text-center max-w-14"
@@ -233,8 +254,6 @@ function Table({ data, accessToken, fetchData }) {
                 <h1>No data</h1>
             )}
         </div>
-
-        
             <Modal
                 isOpen={isModalOpen}
                 closeModal={closeModal}
@@ -246,6 +265,7 @@ function Table({ data, accessToken, fetchData }) {
             />
             
         </>
+        
     );
 }
 

@@ -5,6 +5,8 @@ import Table from "../../components/Table";
 import Spinner from "../../components/Spinner";
 import { CiSquarePlus } from "react-icons/ci";
 import Modal from "../../components/Modal";
+import Footer from "../../components/Footer"
+
 
 function AdminExam({ accessToken, role }) {
     const navigate = useNavigate();
@@ -69,6 +71,9 @@ function AdminExam({ accessToken, role }) {
                         <Table data={exam} accessToken={accessToken} fetchData={fetchData}/>
                     </>
                 )}
+                <div className="absolute bottom-0 w-full py-2">
+                <Footer ></Footer>
+                </div>
             </div>
             <Modal
                 isOpen={isModalOpen}
