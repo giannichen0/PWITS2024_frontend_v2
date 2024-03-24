@@ -45,9 +45,7 @@ function Table({ data, accessToken, fetchData }) {
                     .header()
                     .to$()
                     .addClass("dt-head-center");
-                $("#dt-length-0").css({
-                        // Add your CSS properties and values here
-                        // Example:
+                $(".dt-length>label>select").css({
                         "width": "50px",
                         
                     });
