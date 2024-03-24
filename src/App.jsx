@@ -13,8 +13,9 @@ const App = () => {
     return (
         <AuthProvider>
             {/*<ResponseInterceptor />*/}
+            <TokenRefresher />
             <ResponseInterceptor />
-                <TokenRefresher />
+                
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/admin/*" element={<AdminDashboard />}></Route>
