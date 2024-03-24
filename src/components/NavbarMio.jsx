@@ -86,8 +86,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/admin"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/admin" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/admin" ? "lg:text-purple-700 " :""
                             }`}
                         >
                             Dottori

@@ -17,7 +17,8 @@ function Table({ data, accessToken, fetchData }) {
 
     useEffect(() => {
         $(document).ready(() => {
-            $(tabella.current).DataTable({
+            $(tabella.current).DataTable(
+                {
                 language: {
                     search: "Ricerca",
                     lengthMenu: "Mostra _MENU_ elementi",
@@ -37,7 +38,8 @@ function Table({ data, accessToken, fetchData }) {
                         sortDescending: ": ordine decrescente",
                     },
                 },
-            });
+            }
+            );
             setTimeout(() => {
                 $(tabella.current)
                     .DataTable()
@@ -50,7 +52,8 @@ function Table({ data, accessToken, fetchData }) {
                         
                     });
             }, 10);
-        });
+        }
+        );
     }, []);
 
     const formatDate = (dateString) => {
