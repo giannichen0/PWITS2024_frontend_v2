@@ -81,7 +81,7 @@ const DoctorProfile = ({ accessToken, role }) => {
                             <p>
                                 <strong>telefono:</strong> {dottore.telefono}
                             </p>
-                            {/* Add more fields as needed */}
+                    
                         </div>
                     </div>
                 </div>
