@@ -8,14 +8,14 @@ import { AuthProvider } from "../context/authProvider";
 import NotFound from "./pages/NotFound";
 import TokenRefresher from "./components/TokenRefresher";
 import ResponseInterceptor from "../middleware/ResponseInterceptor";
-
+import { IsMobileProvider } from "../context/isMobileProvider";
 const App = () => {
     return (
-        <AuthProvider>
-            {/*<ResponseInterceptor />*/}
-            <TokenRefresher />
-            <ResponseInterceptor />
-                
+        <IsMobileProvider>
+            <AuthProvider>
+                <TokenRefresher />
+                <ResponseInterceptor />
+
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/admin/*" element={<AdminDashboard />}></Route>
@@ -23,8 +23,8 @@ const App = () => {
                     <Route path="/patient/*" element={<PatientDashboard />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
-           
-        </AuthProvider>
+            </AuthProvider>
+        </IsMobileProvider>
     );
 };
 

@@ -12,6 +12,7 @@ const AdminDashboard = () => {
     const navigate = useNavigate();
 
     const { accessToken } = useContext(AuthContext);
+    
     const role = accessToken.split("\t")[1]
     useEffect(() => {
         if (!accessToken || role!== "admin") 
