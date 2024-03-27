@@ -9,9 +9,8 @@ import Footer from "../components/Footer";
 import IsMobileContext from "../../context/isMobileProvider";
 
 function Table({ data, accessToken, fetchData }) {
-    
-    const {isMobile} = useContext(IsMobileContext)
-    console.log(isMobile)
+    const { isMobile } = useContext(IsMobileContext);
+    console.log(isMobile);
 
     const columnHeaders = data.length > 0 ? Object.keys(data[0]) : [];
     const tabella = useRef();
@@ -20,12 +19,10 @@ function Table({ data, accessToken, fetchData }) {
     const [selectedItem, setSelectedItem] = useState("");
     const [mode, setMode] = useState("");
 
-    useEffect(() => {  
-        if(!isMobile){
-
+    useEffect(() => {
+        if (!isMobile) {
             $(document).ready(() => {
-                $(tabella.current).DataTable(
-                    {
+                $(tabella.current).DataTable({
                     language: {
                         search: "Ricerca",
                         lengthMenu: "Mostra _MENU_ elementi",
@@ -45,8 +42,7 @@ function Table({ data, accessToken, fetchData }) {
                             sortDescending: ": ordine decrescente",
                         },
                     },
-                }
-                );
+                });
                 setTimeout(() => {
                     $(tabella.current)
                         .DataTable()
@@ -55,12 +51,10 @@ function Table({ data, accessToken, fetchData }) {
                         .to$()
                         .addClass("dt-head-center");
                     $(".dt-length>label>select").css({
-                            "width": "50px",
-                            
-                        });
+                        width: "50px",
+                    });
                 }, 10);
-            }
-            );
+            });
         }
     }, []);
 
@@ -173,10 +167,13 @@ function Table({ data, accessToken, fetchData }) {
         fetchData();
     };
 
-    if(!isMobile){
+    if (!isMobile) {
         return (
             <>
-                <div className="overflow-auto w-full" style={{ height: "60vh" }}>
+                <div
+                    className="overflow-auto w-full"
+                    style={{ height: "60vh" }}
+                >
                     {columnHeaders.length > 0 ? (
                         <table className="" ref={tabella} id="tabella">
                             <thead>
@@ -221,7 +218,9 @@ function Table({ data, accessToken, fetchData }) {
                             </thead>
                             <tbody>
                                 {data.map((item, index) => {
-                                    const createdAtDate = new Date(item.createdAt);
+                                    const createdAtDate = new Date(
+                                        item.createdAt
+                                    );
                                     const currentDate = new Date();
                                     const differenceInDays = Math.floor(
                                         (currentDate - createdAtDate) /
@@ -232,7 +231,7 @@ function Table({ data, accessToken, fetchData }) {
                                         !item.completed &&
                                         item.report &&
                                         differenceInDays > 5;
-    
+
                                     return (
                                         <tr key={index} className="h-14">
                                             {columnHeaders.map((header, idx) =>
@@ -245,7 +244,9 @@ function Table({ data, accessToken, fetchData }) {
                                                             item[header]
                                                         ).toString() !==
                                                         "Invalid Date" ? (
-                                                            formatDate(item[header])
+                                                            formatDate(
+                                                                item[header]
+                                                            )
                                                         ) : (
                                                             <div className="overflow-x-auto whitespace-nowrap">
                                                                 {item[header]}
@@ -261,7 +262,9 @@ function Table({ data, accessToken, fetchData }) {
                                                             item[header]
                                                         ).toString() !==
                                                         "Invalid Date" ? (
-                                                            formatDate(item[header])
+                                                            formatDate(
+                                                                item[header]
+                                                            )
                                                         ) : (
                                                             <div className="overflow-x-auto whitespace-nowrap">
                                                                 {item[header]}
@@ -274,7 +277,9 @@ function Table({ data, accessToken, fetchData }) {
                                                 <div className="flex justify-center gap-x-4">
                                                     <button
                                                         onClick={() =>
-                                                            handleEditClick(item)
+                                                            handleEditClick(
+                                                                item
+                                                            )
                                                         }
                                                         className="text-2xl text-yellow-600"
                                                     >
@@ -295,14 +300,16 @@ function Table({ data, accessToken, fetchData }) {
                                                     ) && (
                                                         <button
                                                             onClick={() =>
-                                                                handlePdfClick(item)
+                                                                handlePdfClick(
+                                                                    item
+                                                                )
                                                             }
                                                             className="text-2xl text-red-600"
                                                         >
                                                             <BsFiletypePdf />
                                                         </button>
                                                     )}
-    
+
                                                     {showMailIcon && (
                                                         <button
                                                             onClick={() =>
@@ -337,8 +344,98 @@ function Table({ data, accessToken, fetchData }) {
                 />
             </>
         );
-    }else{
-        return <>not</>
+    } else {
+        return (
+            <>
+                <div
+                    className="overflow-auto w-full"
+                    style={{ height: "70vh" }}
+                >
+                    {data.map((item, index) => (
+                        <div
+                            key={index}
+                            className="max-w-sm mx-auto bg-white shadow-md rounded-lg overflow-hidden my-4"
+                        >
+                            <div className="px-6 py-4">
+                                {Object.keys(item).map((key, idx) => (
+                                    <div key={idx} className="mb-2">
+                                        {key == "_id" ? (
+                                            <>
+                                                <p className="text-gray-600 font-bold hidden">
+                                                    {key.toUpperCase()}
+                                                </p>
+                                                <p className="text-gray-900 hidden">
+                                                    {item[key]}
+                                                </p>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <p className="text-gray-600 font-bold">
+                                                    {key.toUpperCase()}
+                                                </p>
+                                                <p className="text-gray-900 ">
+                                                    {item[key]}
+                                                </p>
+                                            </>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="px-6 py-4 flex justify-end">
+                                {/* Operations */}
+                                <button
+                                    onClick={() => handleEditClick(item)}
+                                    className="text-yellow-600 hover:text-yellow-800 mr-2"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm0 0V8m0 4h4m-8 8a2 2 0 100-4 2 2 0 000 4zm0 0v4m0-8H8m4 0h4"
+                                        ></path>
+                                    </svg>
+                                </button>
+                                <button
+                                    onClick={() => handleDeleteClick(item._id)}
+                                    className="text-red-600 hover:text-red-800"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M6 18L18 6M6 6l12 12"
+                                        ></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <Modal
+                    isOpen={isModalOpen}
+                    closeModal={closeModal}
+                    selectedItem={selectedItem}
+                    mode={mode}
+                    accessToken={accessToken}
+                    handleEditSuccess={handleEditSuccess}
+                    handleDeleteSuccess={handleDeleteSuccess}
+                />
+            </>
+        );
     }
 }
 
