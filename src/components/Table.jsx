@@ -5,7 +5,6 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { MdOutlineDelete } from "react-icons/md";
 import { BsFiletypePdf } from "react-icons/bs";
 import Modal from "./Modal";
-import Footer from "../components/Footer";
 import IsMobileContext from "../../context/isMobileProvider";
 
 function Table({ data, accessToken, fetchData }) {
@@ -351,79 +350,101 @@ function Table({ data, accessToken, fetchData }) {
                     className="overflow-auto w-full"
                     style={{ height: "70vh" }}
                 >
-                    {data.map((item, index) => (
-                        <div
-                            key={index}
-                            className="max-w-sm mx-auto bg-white shadow-md rounded-lg overflow-hidden my-4"
-                        >
-                            <div className="px-6 py-4">
-                                {Object.keys(item).map((key, idx) => (
-                                    <div key={idx} className="mb-2">
-                                        {key == "_id" ? (
-                                            <>
-                                                <p className="text-gray-600 font-bold hidden">
-                                                    {key.toUpperCase()}
-                                                </p>
-                                                <p className="text-gray-900 hidden">
-                                                    {item[key]}
-                                                </p>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <p className="text-gray-600 font-bold">
-                                                    {key.toUpperCase()}
-                                                </p>
-                                                <p className="text-gray-900 ">
-                                                    {item[key]}
-                                                </p>
-                                            </>
+                    {data.map((item, index) => {
+                        const createdAtDate = new Date(item.createdAt);
+                        const currentDate = new Date();
+                        const differenceInDays = Math.floor(
+                            (currentDate - createdAtDate) / (1000 * 60 * 60)
+                            // *24 differenza in ore cosi.
+                        );
+                        const showMailIcon =
+                            !item.completed &&
+                            item.report &&
+                            differenceInDays > 5;
+
+                        return (
+                            <div
+                                key={index}
+                                className="max-w-sm mx-auto bg-white shadow-md rounded-lg overflow-hidden my-4"
+                            >
+                                <div className="px-6 py-4">
+                                    {Object.keys(item).map((key, idx) => (
+                                        <div key={idx} className="mb-2">
+                                            {key == "_id" ? (
+                                                <>
+                                                    <p className="text-gray-600 font-bold hidden">
+                                                        {key.toUpperCase()}
+                                                    </p>
+                                                    <p className="text-gray-900 hidden">
+                                                        {item[key]}
+                                                    </p>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <p className="text-gray-600 font-bold">
+                                                        {key.toUpperCase()}
+                                                    </p>
+                                                    <p className="text-gray-900 ">
+                                                        {new Date(
+                                                            item[key]
+                                                        ).toString() !==
+                                                        "Invalid Date"
+                                                            ? formatDate(
+                                                                  item[key]
+                                                              )
+                                                            : item[key]}
+                                                    </p>
+                                                </>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="px-6 py-4 flex justify-end">
+                                    <div className="flex justify-center gap-x-4">
+                                        <button
+                                            onClick={() =>
+                                                handleEditClick(item)
+                                            }
+                                            className="text-2xl text-yellow-600"
+                                        >
+                                            <AiOutlineEdit />
+                                        </button>
+                                        <button
+                                            onClick={() =>
+                                                handleDeleteClick(item._id)
+                                            }
+                                            className="text-2xl text-red-600"
+                                        >
+                                            <MdOutlineDelete />
+                                        </button>
+                                        {columnHeaders.includes(
+                                            "completed"
+                                        ) && (
+                                            <button
+                                                onClick={() =>
+                                                    handlePdfClick(item)
+                                                }
+                                                className="text-2xl text-red-600"
+                                            >
+                                                <BsFiletypePdf />
+                                            </button>
+                                        )}
+
+                                        {showMailIcon && (
+                                            <button
+                                                onClick={() =>
+                                                    handleMailClick(item)
+                                                }
+                                                className="text-2xl text-blue-600"
+                                            >
+                                                <RiSendPlaneFill />
+                                            </button>
                                         )}
                                     </div>
-                                ))}
+                                </div>
                             </div>
-                            <div className="px-6 py-4 flex justify-end">
-                                {/* Operations */}
-                                <button
-                                    onClick={() => handleEditClick(item)}
-                                    className="text-yellow-600 hover:text-yellow-800 mr-2"
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-6 w-6"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm0 0V8m0 4h4m-8 8a2 2 0 100-4 2 2 0 000 4zm0 0v4m0-8H8m4 0h4"
-                                        ></path>
-                                    </svg>
-                                </button>
-                                <button
-                                    onClick={() => handleDeleteClick(item._id)}
-                                    className="text-red-600 hover:text-red-800"
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-6 w-6"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M6 18L18 6M6 6l12 12"
-                                        ></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
                 <Modal
                     isOpen={isModalOpen}
