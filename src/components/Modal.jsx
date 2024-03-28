@@ -88,8 +88,8 @@ function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken, handleE
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                    <div className="relative transform overflow-hidden rounded-lg bg-[#F6F3F9] text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                        <div className="bg-[#F6F3F9] px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div className="relative transform overflow-hidden rounded-lg bg-[#F6F3F9] text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:h-5/6">
+                        <div className="bg-[#F6F3F9] px-4 xl:pb-4 xl:pt-5">
                             <div className="sm:flex sm:items-start">
                                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                                     <h3
@@ -201,8 +201,8 @@ function Modal({ isOpen, closeModal, selectedItem="", mode, accessToken, handleE
             <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
             <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
                 <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                    <div className="relative transform overflow-hidden rounded-lg bg-[#F6F3F9] text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                        <div className="bg-[#F6F3F9] px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div className="relative transform overflow-hidden rounded-lg bg-[#F6F3F9] text-left shadow-xl transition-all sm:my-8 max-sm:w-5/6">
+                        <div className="bg-[#F6F3F9] px-4 pb-4 pt-5 ">
                             <div className="sm:flex sm:items-start">
                                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                                     <h3

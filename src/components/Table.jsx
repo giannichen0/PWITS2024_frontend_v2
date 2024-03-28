@@ -9,7 +9,6 @@ import IsMobileContext from "../../context/isMobileProvider";
 
 function Table({ data, accessToken, fetchData }) {
     const { isMobile } = useContext(IsMobileContext);
-    console.log(isMobile);
 
     const columnHeaders = data.length > 0 ? Object.keys(data[0]) : [];
     const tabella = useRef();
@@ -329,7 +328,7 @@ function Table({ data, accessToken, fetchData }) {
                             </tbody>
                         </table>
                     ) : (
-                        <h1>No data</h1>
+                        <div className="text-center p-20">No Data</div>
                     )}
                 </div>
                 <Modal
@@ -350,7 +349,8 @@ function Table({ data, accessToken, fetchData }) {
                     className="overflow-auto w-full"
                     style={{ height: "70vh" }}
                 >
-                    {data.map((item, index) => {
+                    {columnHeaders.length > 0 ? 
+                    data.map((item, index) => {
                         const createdAtDate = new Date(item.createdAt);
                         const currentDate = new Date();
                         const differenceInDays = Math.floor(
@@ -444,7 +444,7 @@ function Table({ data, accessToken, fetchData }) {
                                 </div>
                             </div>
                         );
-                    })}
+                    }) :  <div className="text-center p-20">No Data</div>}
                 </div>
                 <Modal
                     isOpen={isModalOpen}
