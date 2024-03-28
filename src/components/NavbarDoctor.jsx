@@ -84,8 +84,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/doctor"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/doctor" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/doctor" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             profilo
@@ -94,8 +94,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/doctor/patients"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/doctor/patients" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/doctor/patients" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Pazienti
@@ -104,8 +104,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/doctor/reports"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/doctor/reports" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/doctor/reports" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Report
@@ -114,8 +114,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/doctor/exams"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/doctor/exams" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/doctor/exams" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Visite

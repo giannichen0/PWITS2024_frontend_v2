@@ -96,8 +96,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/admin/patients"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/admin/patients" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/admin/patients" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Pazienti
@@ -106,8 +106,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/admin/reports"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/admin/reports" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/admin/reports" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Report
@@ -116,8 +116,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/admin/exams"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/admin/exams" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/admin/exams" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Visite

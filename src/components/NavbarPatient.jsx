@@ -19,7 +19,7 @@ const NavbarMio = () => {
     const handleLogout = async () => {
         try {
             const response = await axios.post(process.env.NODE_MODE === "dev" ? `http://localhost:8080/auth/logout`:"https://pwits2024-backend.onrender.com/auth/logout", {}, {
-                withCredentials: true // Send cookies with the request
+                withCredentials: true 
             });
     
             setAccessToken("");
@@ -28,7 +28,7 @@ const NavbarMio = () => {
         
         } catch (error) {
             console.error("Error during logout:", error);
-            // Handle error
+            
         }
     };
     
@@ -84,8 +84,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/patient"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/patient" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/patient" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Profilo
@@ -94,8 +94,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/patient/doctors"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/patient/doctors" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/patient/doctors" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Dottore
@@ -104,8 +104,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/patient/reports"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/patient/reports" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/patient/reports" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Report
@@ -114,8 +114,8 @@ const NavbarMio = () => {
                         <li>
                         <Link
                             to="/patient/exams"
-                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent md:p-0 ${
-                                location.pathname === "/patient/exams" ? "text-purple-700" : ""
+                            className={`block py-2 px-3 text-gray-900 rounded hover:bg-purple-700 md:hover:bg-transparent ms:bg-transparent md:p-0 ${
+                                location.pathname === "/patient/exams" ? "lg:text-purple-700 " : ""
                             }`}
                         >
                             Visite
